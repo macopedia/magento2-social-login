@@ -37,17 +37,18 @@ class SocialBlock extends \Magento\Framework\View\Element\Template
         Template\Context $context,
         \Techyouknow\SocialLogin\Helper\Social $socialHelper,
         array $data = []
-    )
-    {
+    ) {
         parent::__construct($context, $data);
         $this->socialHelper = $socialHelper;
     }
 
-    public function IsSocialLoginActive() {
+    public function isSocialLoginActive()
+    {
         return $this->socialHelper->isSocialNetworkEnable();
     }
 
-    public function getEnabledSocialNetworks() {
+    public function getEnabledSocialNetworks()
+    {
         return $this->socialHelper->getActiveSocialNetworksList();
     }
 }

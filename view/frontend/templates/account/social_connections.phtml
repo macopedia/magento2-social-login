@@ -1,0 +1,56 @@
+<?php
+/** @var \Techyouknow\SocialLogin\Block\Account\SocialConnections $block */
+
+$networks  = $block->getEnabledSocialNetworks();
+$connected = $block->getConnectedProviders();
+?>
+
+<?php if (empty($networks)): ?>
+    <div class="message info empty">
+        <span><?= $block->escapeHtml(__('No social login providers are currently enabled.')) ?></span>
+    </div>
+<?php else: ?>
+    <div class="table-wrapper social-connections">
+        <table class="data table table-social-connections" id="social-connections-table">
+            <thead>
+                <tr>
+                    <th scope="col" class="col provider"><?= $block->escapeHtml(__('Provider')) ?></th>
+                    <th scope="col" class="col status"><?= $block->escapeHtml(__('Status')) ?></th>
+                    <th scope="col" class="col actions"><?= $block->escapeHtml(__('Action')) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($networks as $key => $name): ?>
+                    <?php $isConnected = isset($connected[$key]); ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('Provider')) ?>" class="col provider">
+                            <span class="social-provider-icon <?= $block->escapeHtmlAttr($key) ?>"></span>
+                            <?= $block->escapeHtml($name) ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('Status')) ?>" class="col status">
+                            <?php if ($isConnected): ?>
+                                <span class="grid-severity-notice"><span><?= $block->escapeHtml(__('Connected')) ?></span></span>
+                            <?php else: ?>
+                                <span class="grid-severity-minor"><span><?= $block->escapeHtml(__('Not connected')) ?></span></span>
+                            <?php endif; ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('Action')) ?>" class="col actions">
+                            <?php if ($isConnected): ?>
+                                <a href="<?= $block->escapeUrl($block->getDisconnectUrl($key)) ?>"
+                                   class="action disconnect"
+                                   onclick="return confirm('<?= $block->escapeJs(__('Disconnect %1?', $name)) ?>')">
+                                    <span><?= $block->escapeHtml(__('Disconnect')) ?></span>
+                                </a>
+                            <?php else: ?>
+                                <a href="<?= $block->escapeUrl($block->getConnectUrl($key)) ?>"
+                                   class="action connect <?= $block->escapeHtmlAttr($key) ?>">
+                                    <span><?= $block->escapeHtml(__('Connect')) ?></span>
+                                </a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Complete Your Registration</title>
+        <css src="Techyouknow_SocialLogin::css/styles.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Techyouknow\SocialLogin\Block\Social\CompleteRegistration"
+                   name="techyouknow_social_complete_registration"
+                   template="Techyouknow_SocialLogin::social/complete_registration.phtml"
+                   cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

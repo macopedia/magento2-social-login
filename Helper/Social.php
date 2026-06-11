@@ -124,7 +124,7 @@ class Social extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getSocialRedirectUrl($adapterId) {
         $baseUrl = $this->storeManager->getStore()->getBaseUrl();
-        $redirectUrl = $baseUrl . 'techyouknow_redirect/social/login/provider/' . $adapterId;
+        $redirectUrl = $baseUrl . 'customer/social/login/provider/' . $adapterId;
 
         return $redirectUrl;
     }

@@ -36,7 +36,8 @@ class SessionConfig
      */
     private $disableSessionUrls = [
         'apple.com',
-        'techyouknow_redirect/social/login'
+        'customer/social/login',
+        'customer/sociallogin/connect',
     ];
 
     /**
@@ -60,24 +61,29 @@ class SessionConfig
 
     public function aroundSetOption(MagentoConfig $subject, callable $proceed, $option, $value)
     {
-        if ($this->isSocialNetworkEnable() && $this->isSecureAndSameSiteCookiesEnabled()) {
-            foreach ($this->disableSessionUrls as $url) {
-                if (strpos((string)$this->request->getPathInfo(), $url) !== false) {
-                    switch ($option) {
-                        case 'session.cookie_secure':
-                            $value = 1;
-                            break;
-                        case 'session.cookie_samesite':
-                            $value = 'None';
-                            break;
-                    }
+        if ($this->isSocialNetworkEnable() && $this->isOAuthCallbackUrl()) {
+            switch ($option) {
+                case 'session.cookie_secure':
+                    $value = 1;
                     break;
-                }
+                case 'session.cookie_samesite':
+                    $value = 'None';
+                    break;
             }
         }
 
-        // Call the original method
         return $proceed($option, $value);
+    }
+
+    private function isOAuthCallbackUrl(): bool
+    {
+        $path = (string) $this->request->getPathInfo();
+        foreach ($this->disableSessionUrls as $url) {
+            if (strpos($path, $url) !== false) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public function isSecureAndSameSiteCookiesEnabled()

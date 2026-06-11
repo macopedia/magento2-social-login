@@ -80,7 +80,7 @@
     transition: .3s;
 }
 .social-login-container a span {
-    text-transform: capitalize;
+    text-transform: none;
 }
 .social-login-container a::before {
     content: "";
@@ -118,3 +118,43 @@
 .social-login-container a.yahoo::before {
     background-image: url('../images/social_networks/yahoo-48.png');
 }
+
+.table-social-connections thead th {
+    padding: 10px 15px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.table-social-connections tbody td {
+    padding: 12px 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.table-social-connections .action.disconnect {
+    color: #b30000;
+}
+
+.table-social-connections .col.provider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.social-provider-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+}
+.social-provider-icon.google    { background-image: url('../images/social_networks/google-48.png'); }
+.social-provider-icon.facebook  { background-image: url('../images/social_networks/fb-48.png'); }
+.social-provider-icon.apple     { background-image: url('../images/social_networks/apple-48.png'); }
+.social-provider-icon.amazon    { background-image: url('../images/social_networks/amazon-48.png'); }
+.social-provider-icon.github    { background-image: url('../images/social_networks/github-48.png'); }
+.social-provider-icon.instagram { background-image: url('../images/social_networks/instagram-48.png'); }
+.social-provider-icon.linkedin  { background-image: url('../images/social_networks/linkedin-48.png'); }
+.social-provider-icon.twitter   { background-image: url('../images/social_networks/twitter-48.png'); }
+.social-provider-icon.yahoo     { background-image: url('../images/social_networks/yahoo-48.png'); }

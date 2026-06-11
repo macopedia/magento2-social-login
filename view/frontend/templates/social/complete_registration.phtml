@@ -1,0 +1,117 @@
+<?php
+/** @var \Techyouknow\SocialLogin\Block\Social\CompleteRegistration $block */
+
+$profile   = $block->getPendingProfile();
+$firstname = $block->escapeHtmlAttr($profile['firstname'] ?? '');
+$lastname  = $block->escapeHtmlAttr($profile['lastname'] ?? '');
+$email     = $block->escapeHtmlAttr($profile['email'] ?? '');
+?>
+
+<div class="login-container">
+    <div class="block block-new-customer">
+        <div class="block-title">
+            <strong><?= $block->escapeHtml(__('Complete Your Registration')) ?></strong>
+        </div>
+        <div class="block-content">
+            <p><?= $block->escapeHtml(__('We need a few more details to create your account.')) ?></p>
+
+            <form class="form social-complete-registration-form"
+                  action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+                  method="post"
+                  id="social-complete-registration-form">
+
+                <?= $block->getBlockHtml('formkey') ?>
+
+                <fieldset class="fieldset create account">
+                    <legend class="legend"><span><?= $block->escapeHtml(__('Personal Information')) ?></span></legend>
+
+                    <div class="field field-name-firstname required">
+                        <label class="label" for="firstname">
+                            <span><?= $block->escapeHtml(__('First Name')) ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text"
+                                   id="firstname"
+                                   name="firstname"
+                                   value="<?= $firstname ?>"
+                                   class="input-text"
+                                   autocomplete="given-name"
+                                   required/>
+                        </div>
+                    </div>
+
+                    <div class="field field-name-lastname required">
+                        <label class="label" for="lastname">
+                            <span><?= $block->escapeHtml(__('Last Name')) ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text"
+                                   id="lastname"
+                                   name="lastname"
+                                   value="<?= $lastname ?>"
+                                   class="input-text"
+                                   autocomplete="family-name"
+                                   required/>
+                        </div>
+                    </div>
+
+                    <div class="field field-email">
+                        <label class="label" for="email">
+                            <span><?= $block->escapeHtml(__('Email')) ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="email"
+                                   id="email"
+                                   value="<?= $email ?>"
+                                   class="input-text"
+                                   readonly
+                                   disabled/>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="fieldset create account">
+                    <legend class="legend"><span><?= $block->escapeHtml(__('Password')) ?></span></legend>
+
+                    <div class="field password required">
+                        <label class="label" for="password">
+                            <span><?= $block->escapeHtml(__('Password')) ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="password"
+                                   id="password"
+                                   name="password"
+                                   class="input-text"
+                                   autocomplete="new-password"
+                                   required/>
+                        </div>
+                        <div class="note"><?= $block->escapeHtml(__('You can use this password to sign in with email and password in the future.')) ?></div>
+                    </div>
+
+                    <div class="field confirmation required">
+                        <label class="label" for="password_confirmation">
+                            <span><?= $block->escapeHtml(__('Confirm Password')) ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="password"
+                                   id="password_confirmation"
+                                   name="password_confirmation"
+                                   class="input-text"
+                                   autocomplete="new-password"
+                                   required/>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button type="submit" class="action submit primary">
+                            <span><?= $block->escapeHtml(__('Create Account')) ?></span>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

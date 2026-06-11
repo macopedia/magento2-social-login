@@ -1,27 +1,8 @@
 <?xml version="1.0"?>
-
 <!--
   ~ MIT License
   ~
   ~ Copyright (c) 2023 Techyouknow
-  ~
-  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
-  ~ of this software and associated documentation files (the "Software"), to deal
-  ~ in the Software without restriction, including without limitation the rights
-  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  ~ copies of the Software, and to permit persons to whom the Software is
-  ~ furnished to do so, subject to the following conditions:
-  ~
-  ~ The above copyright notice and this permission notice shall be included in all
-  ~ copies or substantial portions of the Software.
-  ~
-  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  ~ SOFTWARE.
   -->
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
@@ -42,275 +23,234 @@
                     <comment>Select Yes to enable social login.</comment>
                 </field>
             </group>
-            <group id="adapters" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="adapters" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Social Login Adapters</label>
+
                 <group id="google" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Google</label>
-                    <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment><![CDATA[Register your app at <a href="https://console.cloud.google.com/apis/credentials" target="_blank">Google Cloud Console</a> → Create credentials → OAuth client ID → Application type: Web application. Add the Redirect URI shown below to "Authorized redirect URIs".]]></comment>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Enable Google</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment>Select Yes to enable Facebook login option.</comment>
                     </field>
-                    <field id="app_id" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App ID</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="app_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client ID</label>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="app_secret" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App Secret</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="app_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client Secret</label>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="redirect_uri" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>URI Redirect</label>
+                    <field id="redirect_uri" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Redirect URI</label>
                         <frontend_model>Techyouknow\SocialLogin\Block\System\RedirectUrl</frontend_model>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <comment>Copy this URL to "Authorized redirect URIs" in Google Cloud Console.</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
                 </group>
-                <group id="facebook" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <group id="facebook" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Facebook</label>
-                    <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment><![CDATA[Register your app at <a href="https://developers.facebook.com/apps/" target="_blank">Meta for Developers</a> → Create App → Consumer → Add "Facebook Login" product → Settings → Valid OAuth Redirect URIs.]]></comment>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Enable Facebook</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment>Select Yes to enable Facebook login option.</comment>
                     </field>
-                    <field id="app_id" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <field id="app_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>App ID</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="app_secret" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <field id="app_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>App Secret</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="redirect_uri" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>URI Redirect</label>
+                    <field id="redirect_uri" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Redirect URI</label>
                         <frontend_model>Techyouknow\SocialLogin\Block\System\RedirectUrl</frontend_model>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <comment>Copy this URL to "Valid OAuth Redirect URIs" in Meta for Developers.</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
                 </group>
-                <group id="apple" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <group id="apple" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Apple</label>
-                    <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment><![CDATA[Register your app at <a href="https://developer.apple.com/account/resources/identifiers/list/serviceId" target="_blank">Apple Developer → Certificates, Identifiers &amp; Profiles</a> → Identifiers → Services IDs. Enable "Sign In with Apple", click Configure and add the Redirect URI below as a Return URL. You also need a Key: Keys → Create key → enable "Sign In with Apple".]]></comment>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Enable Apple</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment>Select Yes to enable Apple login option.</comment>
                     </field>
-                    <field id="app_id" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Apple ID</label>
-                        <comment>Your Apple ID</comment>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="app_id" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Services ID</label>
+                        <comment>The identifier of your Services ID (e.g. com.example.myapp).</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="team_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Apple Team ID</label>
-                        <comment>Your Apple team id</comment>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="team_id" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Team ID</label>
+                        <comment>Found in the top-right corner of Apple Developer → Membership.</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="key_id" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <field id="key_id" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Key ID</label>
-                        <comment>Your Apple key id</comment>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <comment>The Key ID from Apple Developer → Keys.</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="key_content" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Key Content</label>
-                        <comment>Your Apple key (content including BEGIN and END lines)</comment>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="key_content" translate="label comment" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Private Key Content</label>
+                        <comment>Paste the full content of the .p8 key file, including -----BEGIN PRIVATE KEY----- and -----END PRIVATE KEY----- lines.</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="change_session" translate="label comment" type="select" sortOrder="50" showInDefault="1">
+                    <field id="change_session" translate="label comment" type="select" sortOrder="60" showInDefault="1">
                         <label>Enable Secure and SameSite Cookies</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment>Choose "Yes" to configure session cookies with session.cookie_samesite set to "None" and session.cookie_secure set to "1"</comment>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <comment>Required for Apple login to work in a popup. Sets session.cookie_samesite=None and session.cookie_secure=1.</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="redirect_uri" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>URI Redirect</label>
+                    <field id="redirect_uri" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Redirect URI</label>
                         <frontend_model>Techyouknow\SocialLogin\Block\System\RedirectUrl</frontend_model>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <comment>Copy this URL to "Return URLs" when configuring your Services ID in Apple Developer.</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
                 </group>
-                <group id="instagram" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <group id="instagram" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Instagram</label>
-                    <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment><![CDATA[Register your app at <a href="https://developers.facebook.com/apps/" target="_blank">Meta for Developers</a> → Create App → add "Instagram Basic Display" product → Basic Display → OAuth Redirect URI.]]></comment>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Enable Instagram</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment>Select Yes to enable Facebook login option.</comment>
                     </field>
-                    <field id="app_id" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <field id="app_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>App ID</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="app_secret" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <field id="app_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>App Secret</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="redirect_uri" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>URI Redirect</label>
+                    <field id="redirect_uri" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Redirect URI</label>
                         <frontend_model>Techyouknow\SocialLogin\Block\System\RedirectUrl</frontend_model>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <comment>Copy this URL to "Valid OAuth Redirect URIs" in Meta for Developers (Instagram Basic Display).</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
                 </group>
-                <group id="twitter" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Twitter</label>
-                    <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Enable Twitter</label>
+
+                <group id="twitter" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter / X</label>
+                    <comment><![CDATA[Register your app at <a href="https://developer.twitter.com/en/portal/projects-and-apps" target="_blank">Twitter Developer Portal</a> → Projects &amp; Apps → Create App → User authentication settings → enable OAuth 2.0 → add the Redirect URI below.]]></comment>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable Twitter / X</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment>Select Yes to enable Facebook login option.</comment>
                     </field>
-                    <field id="app_id" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App ID</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="app_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client ID (OAuth 2.0)</label>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="app_secret" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App Secret</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="app_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client Secret (OAuth 2.0)</label>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="redirect_uri" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>URI Redirect</label>
+                    <field id="redirect_uri" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Redirect URI</label>
                         <frontend_model>Techyouknow\SocialLogin\Block\System\RedirectUrl</frontend_model>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <comment>Copy this URL to "Callback URI / Redirect URL" in Twitter Developer Portal.</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
                 </group>
-                <group id="amazon" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <group id="amazon" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Amazon</label>
-                    <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment><![CDATA[Register your app at <a href="https://developer.amazon.com/loginwithamazon/console/site/lwa/overview.html" target="_blank">Login with Amazon Developer Console</a> → Create a New Security Profile → Web Settings → add the Redirect URI below to "Allowed Return URLs".]]></comment>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Enable Amazon</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment>Select Yes to enable Amazon login option.</comment>
                     </field>
-                    <field id="app_id" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App ID</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="app_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client ID</label>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="app_secret" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App Secret</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="app_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client Secret</label>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="redirect_uri" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>URI Redirect</label>
+                    <field id="redirect_uri" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Redirect URI</label>
                         <frontend_model>Techyouknow\SocialLogin\Block\System\RedirectUrl</frontend_model>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <comment>Copy this URL to "Allowed Return URLs" in Login with Amazon Developer Console.</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
                 </group>
-                <group id="yahoo" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <group id="yahoo" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Yahoo</label>
-                    <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment><![CDATA[Register your app at <a href="https://developer.yahoo.com/apps/create/" target="_blank">Yahoo Developer Network</a> → Create App → select "Web Application" → Permissions: OpenID Connect Permissions → add the Redirect URI below.]]></comment>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Enable Yahoo</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment>Select Yes to enable Yahoo login option.</comment>
                     </field>
-                    <field id="app_id" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App ID</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="app_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client ID</label>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="app_secret" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App Secret</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="app_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client Secret</label>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="redirect_uri" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>URI Redirect</label>
+                    <field id="redirect_uri" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Redirect URI</label>
                         <frontend_model>Techyouknow\SocialLogin\Block\System\RedirectUrl</frontend_model>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <comment>Copy this URL to "Redirect URI(s)" in Yahoo Developer Network.</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
                 </group>
-                <group id="github" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>GitHub</label>
-                    <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Enable Paypal</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment>Select Yes to enable Apple login option.</comment>
-                    </field>
-                    <field id="app_id" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App ID</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
-                    </field>
-                    <field id="app_secret" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App Secret</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
-                    </field>
-                    <field id="redirect_uri" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>URI Redirect</label>
-                        <frontend_model>Techyouknow\SocialLogin\Block\System\RedirectUrl</frontend_model>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
-                    </field>
-                </group>
-                <group id="linkedin" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <group id="linkedin" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>LinkedIn</label>
-                    <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment><![CDATA[Register your app at <a href="https://www.linkedin.com/developers/apps/new" target="_blank">LinkedIn Developers</a> → Create App → Auth tab → OAuth 2.0 settings → add the Redirect URI below. Required products: "Sign In with LinkedIn using OpenID Connect".]]></comment>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Enable LinkedIn</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment>Select Yes to enable Apple login option.</comment>
                     </field>
-                    <field id="app_id" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App ID</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="app_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client ID</label>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="app_secret" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>App Secret</label>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                    <field id="app_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client Secret</label>
+                        <depends><field id="enable">1</field></depends>
                     </field>
-                    <field id="redirect_uri" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>URI Redirect</label>
+                    <field id="redirect_uri" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Redirect URI</label>
                         <frontend_model>Techyouknow\SocialLogin\Block\System\RedirectUrl</frontend_model>
-                        <depends>
-                            <field id="enable">1</field>
-                        </depends>
+                        <comment>Copy this URL to "Authorized redirect URLs for your app" in LinkedIn Developers.</comment>
+                        <depends><field id="enable">1</field></depends>
                     </field>
                 </group>
+
+                <group id="github" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GitHub</label>
+                    <comment><![CDATA[Register your app at <a href="https://github.com/settings/applications/new" target="_blank">GitHub → Settings → Developer settings → OAuth Apps → New OAuth App</a>. Set "Authorization callback URL" to the Redirect URI shown below.]]></comment>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable GitHub</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="app_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client ID</label>
+                        <depends><field id="enable">1</field></depends>
+                    </field>
+                    <field id="app_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Client Secret</label>
+                        <depends><field id="enable">1</field></depends>
+                    </field>
+                    <field id="redirect_uri" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Redirect URI</label>
+                        <frontend_model>Techyouknow\SocialLogin\Block\System\RedirectUrl</frontend_model>
+                        <comment>Copy this URL to "Authorization callback URL" in GitHub OAuth App settings.</comment>
+                        <depends><field id="enable">1</field></depends>
+                    </field>
+                </group>
+
             </group>
         </section>
     </system>

@@ -17,8 +17,7 @@
       ],
     "require": {
         "php": ">=7.3",
-        "hybridauth/hybridauth": "~3.0",
-	"firebase/php-jwt": "~6.0"
+        "hybridauth/hybridauth": "~3.0"
     },
     "autoload": {
         "files": [

@@ -88,11 +88,11 @@ class SessionConfig
 
     public function isSecureAndSameSiteCookiesEnabled()
     {
-        return $this->scopeConfig->getValue('techyouknow_social_network/adapters/apple/change_session');
+        return $this->scopeConfig->getValue('techyouknow_social_network/adapters/apple/change_session', 'stores');
     }
 
     public function isSocialNetworkEnable()
     {
-        return $this->scopeConfig->getValue('techyouknow_social_network/general/enable');
+        return $this->scopeConfig->getValue('techyouknow_social_network/general/enable', 'stores');
     }
 }
